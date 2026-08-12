@@ -41,9 +41,30 @@ main { position: relative; isolation: isolate; }
   background-image: url("/images/duality-landscape-v1.png");
   background-repeat: repeat-x;
   background-position: 0 center;
-  background-size: auto 180%;
+  background-size: auto 100%;
   filter: saturate(0.92) contrast(0.98);
   will-change: background-position;
+}
+
+.duality-celestial {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.duality-sun-glow {
+  background: radial-gradient(circle, rgba(225, 190, 111, 0.3) 0 42%, rgba(225, 190, 111, 0.14) 56%, transparent 74%);
+  box-shadow: 0 0 2.5rem rgba(210, 174, 91, 0.22);
+  mix-blend-mode: multiply;
+}
+
+.duality-moon-glow {
+  background: radial-gradient(circle, rgba(244, 221, 158, 0.2) 0 34%, rgba(220, 188, 111, 0.12) 52%, transparent 72%);
+  box-shadow: 0 0 2.8rem rgba(220, 187, 104, 0.2);
+  mix-blend-mode: screen;
 }
 
 .duality-wash {
@@ -256,7 +277,10 @@ h1 {
 .cycle-control:nth-child(3) { bottom: 8%; left: calc(50% - 2rem); }
 .cycle-control:nth-child(4) { top: calc(50% - 2rem); left: 4%; }
 
-.chapters { position: relative; }
+.chapters {
+  position: relative;
+  padding-bottom: 11svh;
+}
 .chapter {
   display: grid;
   min-height: 78svh;
@@ -264,19 +288,16 @@ h1 {
   gap: clamp(1.5rem, 5vw, 6rem);
   align-items: center;
   padding: 7rem clamp(1.2rem, 12vw, 14rem);
-  border-top: 1px solid var(--line);
   background: linear-gradient(90deg, rgba(244, 240, 227, 0.58), rgba(244, 240, 227, 0.08));
   backdrop-filter: blur(1px);
 }
 .chapter:nth-child(even) { background: linear-gradient(90deg, rgba(230, 229, 216, 0.46), rgba(69, 84, 79, 0.12)); }
 .chapter-turn {
   color: var(--paper);
-  border-color: rgba(244, 240, 227, 0.18);
   background: linear-gradient(90deg, rgba(11, 10, 8, 0.5), rgba(11, 10, 8, 0.12));
 }
 .chapter.chapter-resonance {
   color: var(--ink);
-  border-color: var(--line);
   background: linear-gradient(90deg, rgba(244, 240, 227, 0.8), rgba(244, 240, 227, 0.5));
   backdrop-filter: blur(2px) saturate(0.94);
 }
@@ -292,6 +313,11 @@ h1 {
 .chapter-body { max-width: 17rem; margin: 0; color: inherit; opacity: 0.72; font-size: 0.94rem; line-height: 2; }
 
 .site-footer {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   padding: 1.5rem clamp(1.2rem, 5vw, 5rem);
@@ -309,13 +335,13 @@ h1 {
   .hero-copy { max-width: 23rem; }
   h1 { font-size: clamp(4.2rem, 20vw, 6.5rem); }
   .hero-seal { width: 7rem; margin: 0 1rem 1rem auto; }
-  .duality-art { background-size: auto 135%; }
   .cycle-stage { width: min(100%, 34rem); margin: -1.8rem auto 0; justify-self: center; }
   .cycle-hint { display: none; }
   .cycle-control:nth-child(1) { top: 4%; }
   .cycle-control:nth-child(2) { right: 0; }
   .cycle-control:nth-child(3) { bottom: 3%; }
   .cycle-control:nth-child(4) { left: 0; }
+  .chapters { padding-bottom: 16svh; }
   .chapter { min-height: 68svh; grid-template-columns: 1fr; gap: 2rem; padding-top: 5rem; padding-bottom: 5rem; }
   .chapter h2 { font-size: clamp(2.25rem, 10vw, 3.8rem); }
   .chapter-index { order: 2; }

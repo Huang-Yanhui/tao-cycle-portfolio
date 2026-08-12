@@ -29,14 +29,18 @@ type Dust = {
 
 export function DualityBackground() {
   const artRef = useRef<HTMLDivElement>(null);
+  const sunGlowRef = useRef<HTMLDivElement>(null);
+  const moonGlowRef = useRef<HTMLDivElement>(null);
   const washRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const art = artRef.current;
+    const sunGlow = sunGlowRef.current;
+    const moonGlow = moonGlowRef.current;
     const wash = washRef.current;
-    if (!canvas || !art || !wash) return;
+    if (!canvas || !art || !sunGlow || !moonGlow || !wash) return;
 
     const context = canvas.getContext("2d");
     if (!context) return;
@@ -51,7 +55,6 @@ export function DualityBackground() {
     let lastX = window.innerWidth / 2;
     let lastY = window.innerHeight / 2;
     let lastRippleAt = 0;
-    let pageProgress = 0;
     let cycleTravel = 0;
     let nightProgress = 0;
 
@@ -68,7 +71,6 @@ export function DualityBackground() {
 
     const updateScroll = () => {
       const maximum = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      pageProgress = Math.min(1, window.scrollY / maximum);
       // Travel keeps increasing through the complete scroll. The final value lands
       // on the start of the next repeated panorama instead of reversing direction.
       const travelValues = [0, 0.18, 0.52, 1, 2];
@@ -103,17 +105,41 @@ export function DualityBackground() {
         break;
       }
 
-      const artworkHeightScale = window.innerWidth <= 760 ? 1.35 : 1.8;
+      // Keep the entire vertical span of the original painting visible. The
+      // panorama still travels horizontally, so every part of the source art
+      // enters the viewport during one complete cycle.
+      const artworkHeightScale = 1;
       const artworkWidth = window.innerHeight * artworkHeightScale * (16 / 9);
       const firstPassDistance = Math.max(0, artworkWidth - window.innerWidth);
       const horizontalOffset =
         cycleTravel <= 1
           ? cycleTravel * firstPassDistance
           : firstPassDistance + (cycleTravel - 1) * window.innerWidth;
-      const verticalPosition = 50 + (pageProgress - 0.5) * 2;
-
-      art.style.backgroundPosition = `${-horizontalOffset}px ${verticalPosition}%`;
+      art.style.backgroundPosition = `${-horizontalOffset}px center`;
       wash.style.opacity = `${0.04 + Math.sin(nightProgress * Math.PI) * 0.2}`;
+
+      // These restrained glow layers follow the sun and moon already painted
+      // into the panorama. Keeping them separate lets the day-night rhythm
+      // remain legible without redrawing or covering the original artwork.
+      const repeatedPosition = (sourceX: number, size: number) => {
+        let position = sourceX - (horizontalOffset % artworkWidth);
+        while (position < -size) position += artworkWidth;
+        while (position > width + size) position -= artworkWidth;
+        return position;
+      };
+      const sunSize = height * 0.075;
+      const moonSize = height * 0.105;
+      const sunX = repeatedPosition(artworkWidth * 0.122, sunSize);
+      const moonX = repeatedPosition(artworkWidth * 0.918, moonSize);
+
+      sunGlow.style.width = `${sunSize}px`;
+      sunGlow.style.height = `${sunSize}px`;
+      sunGlow.style.transform = `translate3d(${sunX - sunSize / 2}px, ${height * 0.184 - sunSize / 2}px, 0)`;
+      sunGlow.style.opacity = `${Math.max(0, 0.68 - nightProgress * 0.68)}`;
+      moonGlow.style.width = `${moonSize}px`;
+      moonGlow.style.height = `${moonSize}px`;
+      moonGlow.style.transform = `translate3d(${moonX - moonSize / 2}px, ${height * 0.152 - moonSize / 2}px, 0)`;
+      moonGlow.style.opacity = `${0.18 + nightProgress * 0.64}`;
     };
 
     const addPointerTrace = (event: PointerEvent) => {
@@ -260,6 +286,8 @@ export function DualityBackground() {
   return (
     <div className="duality-background" aria-hidden="true">
       <div ref={artRef} className="duality-art" />
+      <div ref={sunGlowRef} className="duality-celestial duality-sun-glow" />
+      <div ref={moonGlowRef} className="duality-celestial duality-moon-glow" />
       <div ref={washRef} className="duality-wash" />
       <div className="duality-paper" />
       <canvas ref={canvasRef} className="duality-effects" />

@@ -7,7 +7,7 @@ const sections = ["此刻", "行旅", "转折", "余韵"];
 
 export default function Home() {
   const moveToSection = (index: number) => {
-    document.getElementById(`chapter-${index}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(`chapter-${index}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   return (
