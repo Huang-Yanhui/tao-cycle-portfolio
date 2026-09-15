@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { phases } from "@/components/cycle-canvas";
 import { DualityBackground } from "@/components/duality-background";
+import { profile } from "@/data/profile";
 
 const sections = ["此刻", "行旅", "转折", "余韵"];
 
@@ -35,7 +37,8 @@ export default function Home() {
           <h1 id="page-title">黄炎辉</h1>
           <p className="hero-line">万物有期，人生有序。</p>
           <p className="hero-note">
-            这里记录正在发生的事。故事尚在展开，不急于定义。
+            {profile.age} 岁。所学从电气工程延伸到运营与供应链管理，
+            现在专注 AI 数据训练、模型评测与供应商协作。
           </p>
           <button className="explore-link" type="button" onClick={() => moveToSection(0)}>
             向下探索 <span aria-hidden="true">↓</span>
@@ -52,36 +55,56 @@ export default function Home() {
           <p className="chapter-index">01 / {phases[0].key}</p>
           <div>
             <p className="chapter-kicker">此刻</p>
-            <h2 id="chapter-now-title">从一片留白开始。</h2>
+            <h2 id="chapter-now-title">以规则见真</h2>
           </div>
-          <p className="chapter-body">自我介绍将在这里慢慢补全。比起匆忙贴上标签，更愿意先保留真实的空白。</p>
+          <div className="chapter-summary">
+            <p className="chapter-body">黄炎辉，26 岁。拥有工程与供应链的复合学习经历，目前从事 AI 数据训练、模型评测与供应商管理。</p>
+            <Link className="chapter-link" href="/now">
+              展开此章 <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
         </section>
 
         <section className="chapter chapter-journey" id="chapter-1" aria-labelledby="chapter-journey-title">
           <p className="chapter-index">02 / {phases[1].key}</p>
           <div>
             <p className="chapter-kicker">行旅</p>
-            <h2 id="chapter-journey-title">行路未完，故事待续。</h2>
+            <h2 id="chapter-journey-title">循履迹而行</h2>
           </div>
-          <p className="chapter-body">工作与学习经历会在这里以时间和转折串联，而不只是按年份罗列。</p>
+          <div className="chapter-summary">
+            <p className="chapter-body">两段工作。从名创优品的智能补货与供应链数字化，走到汇富物业的 AI 数据全链路工作。</p>
+            <Link className="chapter-link" href="/journey">
+              展开此章 <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
         </section>
 
         <section className="chapter chapter-turn" id="chapter-2" aria-labelledby="chapter-turn-title">
           <p className="chapter-index">03 / {phases[2].key}</p>
           <div>
             <p className="chapter-kicker">转折</p>
-            <h2 id="chapter-turn-title">变化并非偏离，亦是路径。</h2>
+            <h2 id="chapter-turn-title">从实践求解</h2>
           </div>
-          <p className="chapter-body">未来可在此收纳重要选择、项目、学习和那些改变方向的时刻。</p>
+          <div className="chapter-summary">
+            <p className="chapter-body">三个 AI 面试主项目，加一个传统供应链数字化项目。只讲项目是什么、做了哪些训练与建设。</p>
+            <Link className="chapter-link" href="/projects">
+              展开此章 <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
         </section>
 
         <section className="chapter chapter-resonance" id="chapter-3" aria-labelledby="chapter-resonance-title">
           <p className="chapter-index">04 / {phases[3].key}</p>
           <div>
             <p className="chapter-kicker">余韵</p>
-            <h2 id="chapter-resonance-title">一切仍在流动。</h2>
+            <h2 id="chapter-resonance-title">听生活回响</h2>
           </div>
-          <p className="chapter-body">兴趣、随笔、实验与新的连接，将在此处汇成下一次出发的涟漪。</p>
+          <div className="chapter-summary">
+            <p className="chapter-body">工作之外，以特调咖啡感受细微变化，也在歌单与现场里留住不同阶段的情绪。</p>
+            <Link className="chapter-link" href="/resonance">
+              展开此章 <span aria-hidden="true">↗</span>
+            </Link>
+          </div>
         </section>
       </div>
 
