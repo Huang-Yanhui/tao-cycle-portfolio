@@ -84,13 +84,13 @@ export const profile = {
     {
       title: "特调咖啡",
       note: "在风味的层次里辨认细微变化，也享受一杯咖啡从配方到入口的完整过程。",
-      image: "/images/coffee-notes-upright.jpg",
+      image: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/coffee-notes-upright.jpg`,
       imageAlt: "桌面上的三杯特调咖啡",
     },
     {
       title: "听歌与现场",
       note: "歌单是日常的留白，现场则让声音、灯光与人群在同一刻汇成回响。",
-      image: "/images/live-music-notes-web.jpg",
+      image: `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/images/live-music-notes-web.jpg`,
       imageAlt: "多场演唱会现场照片拼图",
     },
   ],

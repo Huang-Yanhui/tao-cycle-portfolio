@@ -38,7 +38,7 @@ main { position: relative; isolation: isolate; }
 .duality-art {
   position: absolute;
   inset: 0;
-  background-image: url("/images/duality-landscape-v1.png");
+  background-image: var(--duality-background-image);
   background-repeat: repeat-x;
   background-position: 0 center;
   background-size: auto 100%;

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { DifyChatbot } from "@/components/dify-chatbot";
 import "./globals.css";
 
@@ -8,9 +9,14 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+  const siteStyle = {
+    "--duality-background-image": `url("${basePath}/images/duality-landscape-v1.png")`,
+  } as CSSProperties;
+
   return (
     <html lang="zh-CN">
-      <body>
+      <body style={siteStyle}>
         {children}
         <DifyChatbot />
       </body>
