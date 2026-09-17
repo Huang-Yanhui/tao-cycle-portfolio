@@ -72,7 +72,7 @@ export default function Home() {
             <h2 id="chapter-journey-title">循履迹而行</h2>
           </div>
           <div className="chapter-summary">
-            <p className="chapter-body">两段工作。从名创优品的智能补货与供应链数字化，走到汇富物业的 AI 数据全链路工作。</p>
+            <p className="chapter-body">两段工作。从名创优品的智能补货与供应链数字化，走到汇富的 AI 数据全链路工作。</p>
             <Link className="chapter-link" href="/journey">
               展开此章 <span aria-hidden="true">↗</span>
             </Link>
@@ -86,7 +86,7 @@ export default function Home() {
             <h2 id="chapter-turn-title">从实践求解</h2>
           </div>
           <div className="chapter-summary">
-            <p className="chapter-body">三个 AI 面试主项目，加一个传统供应链数字化项目。只讲项目是什么、做了哪些训练与建设。</p>
+            <p className="chapter-body">三个 AI 面试主项目，加一个传统供应链数字化项目。</p>
             <Link className="chapter-link" href="/projects">
               展开此章 <span aria-hidden="true">↗</span>
             </Link>
