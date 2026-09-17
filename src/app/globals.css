@@ -196,6 +196,10 @@ h1 {
   line-height: 0.95;
 }
 
+.hero-copy h1 {
+  white-space: nowrap;
+}
+
 .hero-line { margin: 0; font-size: clamp(1.15rem, 2.1vw, 1.65rem); letter-spacing: 0.18em; }
 .hero-note { max-width: 20rem; margin: 2rem 0; color: #53635f; font-size: 0.96rem; line-height: 1.9; }
 .explore-link {
@@ -526,6 +530,10 @@ h1 {
   .hero { min-height: 100svh; grid-template-columns: 1fr; align-content: space-between; padding-top: 7rem; }
   .hero-copy { max-width: 23rem; }
   h1 { font-size: clamp(4.2rem, 20vw, 6.5rem); }
+  .hero-copy h1 {
+    font-size: clamp(3.6rem, 17vw, 5.5rem);
+    letter-spacing: 0.08em;
+  }
   .hero-seal { width: 7rem; margin: 0 1rem 1rem auto; }
   .cycle-stage { width: min(100%, 34rem); margin: -1.8rem auto 0; justify-self: center; }
   .cycle-hint { display: none; }

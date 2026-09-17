@@ -26,7 +26,7 @@ export const profile = {
       highlights: [
         "把模糊业务需求拆解为任务目标、输入输出、标签体系、判定边界、正反例与验收标准。",
         "负责外部标注供应商的准入、培训、排期、交付、抽检、错误归因与 Bad Case 回流。",
-        "参与 AI 电商商品素材生产与 AI 销售助手需求挖掘两个项目的数据建设和评测。",
+        "参与 AI 电商商品素材生产与 AI 销售助手需求挖掘两个项目的数据建设。",
       ],
       tags: ["AI 数据训练", "多模态", "SFT", "Agent", "供应商管理"],
     },
@@ -79,7 +79,7 @@ export const profile = {
     focus: ["绩效指标逻辑", "自动评估与预警", "动态追踪看板", "供应商分级与整改"],
   },
   tools: ["Python", "Dify", "Excel", "Power BI", "帆软 BI", "Codex", "VS Code"],
-  languages: ["英语 · IELTS 6.5", "粤语"],
+  languages: ["英语 IELTS 6.5", "粤语"],
   interests: [
     {
       title: "特调咖啡",
