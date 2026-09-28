@@ -3,7 +3,7 @@ import { DualityBackground } from "@/components/duality-background";
 import { profile } from "@/data/profile";
 
 const journey = [
-  ...[...profile.work].reverse().map((item) => ({
+  ...profile.work.map((item) => ({
     period: item.period,
     title: item.company,
     role: item.role,

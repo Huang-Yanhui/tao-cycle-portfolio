@@ -46,14 +46,6 @@ export const profile = {
   ],
   mainProjects: [
     {
-      company: "名创优品",
-      title: "快消智能补货 Agent",
-      type: "AI 项目 · 面试主项目",
-      summary:
-        "面向进销存数据分散、补货判断需要跨表查询的问题，训练能够结合业务规则和系统数据完成库存分析与补货建议的 Agent。",
-      focus: ["RAG 规则知识库", "Agent 工具调用训练", "补货领域 SFT", "训练数据质检"],
-    },
-    {
       company: "汇富物业",
       title: "AI 销售助手需求挖掘",
       type: "AI 项目 · 面试主项目",
@@ -68,6 +60,14 @@ export const profile = {
       summary:
         "面向跨境服装商品素材的批量生产，围绕换装模型和生产 Agent 建设训练、评测与交付链路。",
       focus: ["电商图片素材训练数据构建", "生图模型评测", "Agent 工具调用训练", "供应商管理"],
+    },
+    {
+      company: "名创优品",
+      title: "快消智能补货 Agent",
+      type: "AI 项目 · 面试主项目",
+      summary:
+        "面向进销存数据分散、补货判断需要跨表查询的问题，训练能够结合业务规则和系统数据完成库存分析与补货建议的 Agent。",
+      focus: ["RAG 规则知识库", "Agent 工具调用训练", "补货领域 SFT", "训练数据质检"],
     },
   ],
   supplyChainProject: {
