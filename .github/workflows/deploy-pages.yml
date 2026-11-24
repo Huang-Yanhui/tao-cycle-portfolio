@@ -49,32 +49,8 @@ jobs:
         with:
           path: out
 
-      # Confirm the uploaded artifact is visible before attempting deployment.
-      - name: Wait for Pages artifact availability
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          node --input-type=module <<'NODE'
-          const url = `${process.env.GITHUB_API_URL}/repos/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}/artifacts`;
-          let ready = false;
-          for (let attempt = 1; attempt <= 12; attempt++) {
-            const response = await fetch(url, {
-              headers: {
-                Authorization: `Bearer ${process.env.GH_TOKEN}`,
-                Accept: 'application/vnd.github+json',
-              },
-            });
-            if (!response.ok) throw new Error(`Artifact check failed: HTTP ${response.status}`);
-            const data = await response.json();
-            ready = data.artifacts.some(artifact => artifact.name === 'github-pages' && !artifact.expired);
-            if (ready) break;
-            console.log(`Waiting for Pages artifact (${attempt}/12)`);
-            await new Promise(resolve => setTimeout(resolve, 5000));
-          }
-          if (!ready) throw new Error('Pages artifact was not available after 60 seconds');
-          console.log('Pages artifact is available');
-          NODE
-
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/deploy-pages.mjs
