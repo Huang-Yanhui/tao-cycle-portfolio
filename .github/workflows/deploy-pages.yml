@@ -45,12 +45,11 @@ jobs:
         run: npx next build
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: out
 
-      # Artifact upload can finish before the REST listing used by deploy-pages
-      # becomes consistent. Check readiness instead of deploying immediately.
+      # Confirm the uploaded artifact is visible before attempting deployment.
       - name: Wait for Pages artifact availability
         env:
           GH_TOKEN: ${{ github.token }}
@@ -78,4 +77,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
